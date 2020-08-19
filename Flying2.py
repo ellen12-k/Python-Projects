@@ -6,8 +6,8 @@ WHITE = (255, 255, 255)
 pad_width = 1024
 pad_height = 512
 background_width = 1024
-aircraft_width = 90
-aircraft_height = 55
+aladdin_width = 90
+aladdin_height = 55
 genie_width = 110
 genie_height = 67
 
@@ -16,7 +16,7 @@ def drawObject(obj, x, y):
     gamepad.blit(obj, (x, y))
     
 def runGame():
-    global gamepad, aircraft, clock, background1, background2
+    global gamepad, aladdin, clock, background1, background2
     global genie, lamp, magic
     
     isShotGenie = False
@@ -47,8 +47,8 @@ def runGame():
                     y_change = 5
 
                 elif event.key == pygame.K_LCTRL:
-                        lamp_x = x + aircraft_width
-                        lamp_y = y + aircraft_height/2
+                        lamp_x = x + aladdin_width
+                        lamp_y = y + aladdin_height/2
                         lamp_xy.append([lamp_x, lamp_y])
                     
             if event.type == pygame.KEYUP:
@@ -72,8 +72,8 @@ def runGame():
         y += y_change
         if y < 0:
             y = 0
-        elif y > pad_height - aircraft_height:
-            y = pad_height - aircraft_height
+        elif y > pad_height - aladdin_height:
+            y = pad_height - aladdin_height
             
         genie_x -= 7
         if genie_x <= 0:
@@ -96,7 +96,7 @@ def runGame():
                     except:
                         pass
 
-        drawObject(aircraft, x, y)
+        drawObject(aladdin, x, y)
         
         if len(lamp_xy) != 0:
             for lx, ly in lamp_xy:
@@ -121,13 +121,13 @@ def runGame():
     quit()
     
 def initGame():
-    global gamepad, aircraft, clock, background1, background2
+    global gamepad, aladdin, clock, background1, background2
     global genie, lamp, magic
     
     pygame.init()
     gamepad = pygame.display.set_mode((pad_width, pad_height))
     pygame.display.set_caption('Flying')
-    aircraft = pygame.image.load('images/Aladdin4.png')
+    aladdin = pygame.image.load('images/Aladdin4.png')
     background1 = pygame.image.load('images/desert2.jpg')
     background2 = background1.copy()
     genie = pygame.image.load('images/genie3.png')
